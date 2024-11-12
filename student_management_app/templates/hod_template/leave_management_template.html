@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Leave Requests</h1>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Leave Start</th>
+          <th>Leave End</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for leave in leaves %}
+          <tr>
+            <td>{{ leave.id }}</td>
+            <td>{{ leave.student.first_name }} {{ leave.student.last_name }}</td>
+            <td>{{ leave.leave_start }}</td>
+            <td>{{ leave.leave_end }}</td>
+            <td>{{ leave.status }}</td>
+            <td>
+              <a href="{% url 'approve_leave' leave.id %}" class="btn btn-success btn-sm">Approve</a>
+              <a href="{% url 'reject_leave' leave.id %}" class="btn btn-danger btn-sm">Reject</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

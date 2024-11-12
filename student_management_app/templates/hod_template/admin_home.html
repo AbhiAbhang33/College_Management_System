@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block header %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-summary">
+    <h2>Summary</h2>
+    <ul>
+        <li>Total Students: {{ all_student_count }}</li>
+        <li>Total Subjects: {{ subject_count }}</li>
+        <li>Total Courses: {{ course_count }}</li>
+        <li>Total Staffs: {{ staff_count }}</li>
+    </ul>
+</div>
+
+<div class="course-overview">
+    <h2>Course Overview</h2>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Subjects Count</th>
+            <th>Students Count</th>
+        </tr>
+        {% for course, subject_count, student_count in zip(course_name_list, subject_count_list, student_count_list_in_course) %}
+        <tr>
+            <td>{{ course }}</td>
+            <td>{{ subject_count }}</td>
+            <td>{{ student_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="staff-attendance">
+    <h2>Staff Attendance</h2>
+    <table>
+        <tr>
+            <th>Staff Name</th>
+            <th>Present Attendance</th>
+            <th>Leave Attendance</th>
+        </tr>
+        {% for staff, present, leave in zip(staff_name_list, staff_attendance_present_list, staff_attendance_leave_list) %}
+        <tr>
+            <td>{{ staff }}</td>
+            <td>{{ present }}</td>
+            <td>{{ leave }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="student-attendance">
+    <h2>Student Attendance</h2>
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Present Attendance</th>
+            <th>Leave Attendance</th>
+        </tr>
+        {% for student, present, leave in zip(student_name_list, student_attendance_present_list, student_attendance_leave_list) %}
+        <tr>
+            <td>{{ student }}</td>
+            <td>{{ present }}</td>
+            <td>{{ leave }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
